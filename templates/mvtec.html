@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVTec Product Quality Inspection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🏭 Product Quality Inspection</h1>
+            <p>AI-Powered Visual Defect Detection using MVTec Dataset</p>
+        </header>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/network">Network</a></li>
+                <li><a href="/mvtec" class="active">MVTec</a></li>
+                <li><a href="/xray">X-ray</a></li>
+            </ul>
+        </nav>
+
+        <!-- Info Section -->
+        <div class="info-panel">
+            <h3>📊 What is MVTec Anomaly Detection?</h3>
+            <p>Upload an image of a product (bottle, cable, circuit board, etc.) and our AI will detect manufacturing
+                defects or anomalies.</p>
+            <div class="supported-categories">
+                <h4>✅ Supported Product Categories:</h4>
+                <div class="category-tags">
+                    <span class="tag">🍾 Bottle</span>
+                    <span class="tag">🔌 Cable</span>
+                    <span class="tag">💊 Capsule/Pill</span>
+                    <span class="tag">🧱 Carpet/Fabric</span>
+                    <span class="tag">⚡ Grid/Circuit</span>
+                    <span class="tag">🥜 Hazelnut</span>
+                    <span class="tag">🧵 Leather</span>
+                    <span class="tag">🔩 Metal Nut</span>
+                    <span class="tag">🧪 Screw</span>
+                    <span class="tag">🟫 Tile</span>
+                    <span class="tag">🪥 Toothbrush</span>
+                    <span class="tag">📱 Transistor</span>
+                    <span class="tag">🪵 Wood</span>
+                    <span class="tag">🤐 Zipper</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2>📸 Upload Product Image</h2>
+            <p class="subtitle">Drag & drop or click to select an image for quality inspection</p>
+
+            <!-- Sample Images Section -->
+            <div class="sample-images-section">
+                <button type="button" class="btn-secondary" id="showSamplesBtn">
+                    📁 View Sample Images
+                </button>
+                <div id="sampleImagesModal" class="modal hidden">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <h3>Sample Images for Testing</h3>
+                        <p>Download these examples to test the system:</p>
+                        <div class="sample-grid">
+                            <div class="sample-item">
+                                <div class="sample-preview normal-sample">✅ Normal Bottle</div>
+                                <button class="download-sample" data-sample="bottle_normal">Download</button>
+                            </div>
+                            <div class="sample-item">
+                                <div class="sample-preview defect-sample">❌ Defective Bottle</div>
+                                <button class="download-sample" data-sample="bottle_defect">Download</button>
+                            </div>
+                            <div class="sample-item">
+                                <div class="sample-preview normal-sample">✅ Normal Cable</div>
+                                <button class="download-sample" data-sample="cable_normal">Download</button>
+                            </div>
+                            <div class="sample-item">
+                                <div class="sample-preview defect-sample">❌ Defective Cable</div>
+                                <button class="download-sample" data-sample="cable_defect">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="mvtecForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="file-upload-zone" id="dropZone">
+                        <input type="file" id="imageFile" class="file-upload-input" accept="image/*" required>
+                        <label for="imageFile" id="fileUploadLabel" class="file-upload-label">
+                            <div class="upload-icon">📁</div>
+                            <span class="upload-text">Click to upload or drag image here</span>
+                            <span class="upload-hint">Supported: JPG, PNG (Max 5MB)</span>
+                        </label>
+                        <div class="image-preview hidden" id="imagePreview">
+                            <img id="previewImg" alt="Preview">
+                            <button type="button" class="remove-image" id="removeImage">✕</button>
+                        </div>
+                    </div>
+                    <div class="file-name" id="fileName"></div>
+                </div>
+
+                <button type="submit" class="btn btn-large">
+                    🔍 Inspect for Defects
+                </button>
+            </form>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p class="loading-main">🔬 Analyzing Image Quality...</p>
+            <div class="loading-steps">
+                <p>⚙️ Step 1: Extracting visual features with ResNet34</p>
+                <p>🤖 Step 2: Running 4 anomaly detection models</p>
+                <p>📊 Step 3: Computing ensemble prediction</p>
+            </div>
+        </div>
+
+        <div id="results" class="results-container hidden"></div>
+
+        <footer>
+            <p><strong>Technology:</strong> ResNet34 Feature Extraction | IsolationForest, OneClassSVM,
+                EllipticEnvelope, LOF</p>
+            <p><strong>Dataset:</strong> MVTec Anomaly Detection (15 product categories)</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

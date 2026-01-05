@@ -1,0 +1,82 @@
+Folder PATH listing for volume New Volume
+Volume serial number is 9E1F-1745
+E:.
+¦   app.py
+¦   check_models.py
+¦   check_system.py
+¦   config.py
+¦   construction_mapp.txt
+¦   project_structure.txt
+¦   Readme.md
+¦   requirements.txt
+¦   
++---models
+¦   +---mvtec
+¦   ¦       elliptic_envelope.pkl
+¦   ¦       elliptic_pca.pkl
+¦   ¦       isolation_forest.pkl
+¦   ¦       isolation_pca.pkl
+¦   ¦       lof.pkl
+¦   ¦       ocsvm.pkl
+¦   ¦       pca.pkl
+¦   ¦       resnet_feature_extractor.pt
+¦   ¦       scaler.pkl
+¦   ¦       
+¦   +---network
+¦   ¦       column_transformer.pkl
+¦   ¦       elliptic_envelope.pkl
+¦   ¦       elliptic_pca.pkl
+¦   ¦       isolation_forest.pkl
+¦   ¦       lof.pkl
+¦   ¦       ocsvm.pkl
+¦   ¦       
+¦   +---xray
+¦           autoencoder.pt
+¦           dt_model.pkl
+¦           elliptic_envelope.pkl
+¦           elliptic_pca.pkl
+¦           isolation_forest.pkl
+¦           knn.pkl
+¦           lof.pkl
+¦           ocsvm.pkl
+¦           
++---modules
+¦   ¦   mvtec_pipeline.py
+¦   ¦   network_pipeline.py
+¦   ¦   Readme.md
+¦   ¦   xray_pipeline.py
+¦   ¦   __init__.py
+¦   ¦   
+¦   +---__pycache__
+¦           mvtec_pipeline.cpython-39.pyc
+¦           network_pipeline.cpython-312.pyc
+¦           network_pipeline.cpython-39.pyc
+¦           xray_pipeline.cpython-39.pyc
+¦           __init__.cpython-312.pyc
+¦           __init__.cpython-39.pyc
+¦           
++---static
+¦   +---css
+¦   ¦       style.css
+¦   ¦       
+¦   +---js
+¦   ¦       main.js
+¦   ¦       
+¦   +---uploads
++---templates
+¦       index.html
+¦       mvtec.html
+¦       network.html
+¦       xray.html
+¦       
++---utils
+¦   ¦   helpers.py
+¦   ¦   __init__.py
+¦   ¦   
+¦   +---__pycache__
+¦           helpers.cpython-39.pyc
+¦           __init__.cpython-39.pyc
+¦           
++---__pycache__
+        config.cpython-39.pyc
+        

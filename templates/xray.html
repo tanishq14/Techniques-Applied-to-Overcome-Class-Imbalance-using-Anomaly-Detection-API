@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical X-ray Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 Medical Chest X-ray Analysis</h1>
+            <p>AI-Powered Diagnostic Assistance using NIH Chest X-ray14 Dataset</p>
+        </header>
+        
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/network">Network</a></li>
+                <li><a href="/mvtec">MVTec</a></li>
+                <li><a href="/xray" class="active">X-ray</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Medical Disclaimer -->
+        <div class="medical-disclaimer">
+            <h3>⚕️ Important Medical Disclaimer</h3>
+            <p><strong>This is a research tool for educational purposes only.</strong></p>
+            <ul>
+                <li>❌ Not approved for clinical diagnosis</li>
+                <li>❌ Not a substitute for professional medical advice</li>
+                <li>✅ For research and demonstration purposes</li>
+                <li>✅ Always consult qualified healthcare professionals</li>
+            </ul>
+        </div>
+        
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <h3>📊 What This System Detects</h3>
+            <p>Upload a chest X-ray image and our AI models will analyze for 14 common thoracic conditions:</p>
+            <div class="conditions-grid">
+                <div class="condition-item">
+                    <span class="condition-icon">🫁</span>
+                    <span>Atelectasis (Lung Collapse)</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">❤️</span>
+                    <span>Cardiomegaly (Enlarged Heart)</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">💧</span>
+                    <span>Effusion (Fluid Buildup)</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">🦠</span>
+                    <span>Infiltration</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">🔴</span>
+                    <span>Mass</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">⚪</span>
+                    <span>Nodule</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">🫁</span>
+                    <span>Pneumonia</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">💨</span>
+                    <span>Pneumothorax (Collapsed Lung)</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">🌫️</span>
+                    <span>Consolidation</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">💧</span>
+                    <span>Edema (Fluid)</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">🫁</span>
+                    <span>Emphysema</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">🧬</span>
+                    <span>Fibrosis</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">📏</span>
+                    <span>Pleural Thickening</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">🔺</span>
+                    <span>Hernia</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <h2>📸 Upload Chest X-ray Image</h2>
+            <p class="subtitle">Upload a frontal chest X-ray for AI analysis</p>
+            
+            <!-- Technical Specifications -->
+            <div class="tech-specs">
+                <h4>📋 Image Requirements:</h4>
+                <ul>
+                    <li>✅ Frontal (PA or AP) chest X-ray</li>
+                    <li>✅ Grayscale or color image</li>
+                    <li>✅ Common formats: JPG, PNG, DICOM</li>
+                    <li>✅ Maximum file size: 10MB</li>
+                </ul>
+            </div>
+            
+            <form id="xrayForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="file-upload-zone xray-upload" id="xrayDropZone">
+                        <input type="file" id="xrayFile" class="file-upload-input" accept="image/*" required>
+                        <label for="xrayFile" id="xrayUploadLabel" class="file-upload-label">
+                            <div class="upload-icon">🏥</div>
+                            <span class="upload-text">Click to upload or drag X-ray image here</span>
+                            <span class="upload-hint">Supported: JPG, PNG, DICOM (Max 10MB)</span>
+                        </label>
+                        <div class="image-preview hidden" id="xrayPreview">
+                            <img id="xrayPreviewImg" alt="X-ray Preview">
+                            <button type="button" class="remove-image" id="removeXray">✕</button>
+                        </div>
+                    </div>
+                    <div class="file-name" id="xrayFileName"></div>
+                </div>
+                
+                <!-- Analysis Options -->
+                <div class="analysis-options">
+                    <h4>🔬 Select Analysis Type:</h4>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="analysisType" value="all" checked>
+                            <span class="radio-label">
+                                <strong>Complete Analysis</strong>
+                                <small>Both unsupervised (anomaly detection) + supervised (disease classification)</small>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="analysisType" value="unsupervised">
+                            <span class="radio-label">
+                                <strong>Anomaly Detection Only</strong>
+                                <small>Detect unusual patterns (Autoencoder, IsolationForest, etc.)</small>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="analysisType" value="supervised">
+                            <span class="radio-label">
+                                <strong>Disease Classification Only</strong>
+                                <small>Identify specific conditions (Decision Tree, KNN)</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-large medical-btn">
+                    🔬 Analyze X-ray
+                </button>
+            </form>
+        </div>
+        
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p class="loading-main">🏥 Analyzing Chest X-ray...</p>
+            <div class="loading-steps">
+                <p>📸 Step 1: Preprocessing image (224x224 normalization)</p>
+                <p>🤖 Step 2: Running unsupervised anomaly detection (5 models)</p>
+                <p>🏥 Step 3: Running supervised disease classifiers (2 models)</p>
+                <p>📊 Step 4: Computing ensemble predictions</p>
+            </div>
+        </div>
+        
+        <div id="results" class="results-container hidden"></div>
+        
+        <footer>
+            <p><strong>Unsupervised:</strong> Autoencoder, IsolationForest, OneClassSVM, EllipticEnvelope, LOF</p>
+            <p><strong>Supervised:</strong> Decision Tree, K-Nearest Neighbors (KNN)</p>
+            <p><strong>Dataset:</strong> NIH Chest X-ray14 (112,120 images, 14 pathologies)</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

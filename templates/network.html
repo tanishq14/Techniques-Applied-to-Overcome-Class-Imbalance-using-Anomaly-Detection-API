@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Intrusion Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 Network Intrusion Detection</h1>
+            <p>UNSW-NB15 Dataset Analysis</p>
+        </header>
+        
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/network" class="active">Network</a></li>
+                <li><a href="/mvtec">MVTec</a></li>
+                <li><a href="/xray">X-ray</a></li>
+            </ul>
+        </nav>
+        
+        <div class="form-container">
+            <h2>🔍 Analyze Network Traffic</h2>
+            <p class="subtitle">Enter traffic details or choose a preset scenario</p>
+    
+            <!-- Preset Selector -->
+            <div class="preset-selector">
+                <label for="presetSelect">Quick Start - Choose Traffic Type:</label>
+                <select id="presetSelect" class="preset-dropdown">
+                    <option value="">Custom (Manual Entry)</option>
+                    <option value="normal_web_browsing">🌐 Normal Web Browsing</option>
+                    <option value="file_transfer_ftp">📁 File Transfer (FTP)</option>
+                    <option value="dns_query">🔍 DNS Query</option>
+                    <option value="suspicious_scan">⚠️ Suspicious Port Scan</option>
+                </select>
+                <button type="button" id="loadPresetBtn" class="btn-secondary">Load Example</button>
+            </div>
+
+            <form id="networkForm">
+                <!-- Traffic Info -->
+                <div class="form-section">
+                    <h3>📊 Traffic Information</h3>
+
+                    <div class="form-row">
+                        <div class="form-group tooltip-container">
+                            <label for="Duration">
+                                Duration (seconds)
+                                <span class="info-icon" data-tooltip="How long the connection lasted">ⓘ</span>
+                            </label>
+                            <input type="number" id="Duration" step="0.001" placeholder="e.g., 0.5">
+                            <small class="field-hint">Typical: 0.1 - 5 seconds</small>
+                        </div>
+
+                        <div class="form-group tooltip-container">
+                            <label for="Protocol">
+                                Protocol
+                                <span class="info-icon" data-tooltip="Network communication protocol">ⓘ</span>
+
+                            </label>
+                            <select id="Protocol" required>
+                                <option value="tcp">TCP (Web, File Transfer)</option>
+                                <option value="udp">UDP (DNS, Streaming)</option>
+                                <option value="arp">ARP (Network Discovery)</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group tooltip-container">
+                            <label for="Service">
+                                Service
+                                <span class="info-icon" data-tooltip="What application is using the connection">ⓘ</span>
+
+                            </label>
+                            <select id="Service" required>
+                                <option value="">-- Select --</option>
+                                <option value="-">None</option>
+                                <option value="http">HTTP (Websites)</option>
+                                <option value="https">HTTPS (Secure Websites)</option>
+                                <option value="dns">DNS (Domain Lookup)</option>
+                                <option value="ftp">FTP (File Transfer)</option>
+                                <option value="ssh">SSH (Remote Access)</option>
+                                <option value="smtp">SMTP (Email)</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group tooltip-container">
+                            <label for="State">
+                                State
+                                <span class="info-icon" data-tooltip="Current status of the connection">ⓘ</span>
+                            </label>
+                            <select id="State" required>
+                                <option value="">-- Select --</option>
+                                <option value="FIN">FIN (Finished)</option>
+                                <option value="CON">CON (Connected)</option>
+                                <option value="INT">INT (Interrupted)</option>
+                                <option value="REQ">REQ (Request sent)</option>
+                                <option value="RST">RST (Reset)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Packet Information -->
+                <div class="form-section">
+                    <h3>📦 Packet & Data Information</h3>
+
+                    <div class="form-row">
+                        <div class="form-group tooltip-container">
+                            <label for="Spkts">
+                                Source Packets
+                                <span class="info-icon" data-tooltip="Number of packets sent from source">ⓘ</span>
+                            </label>
+                            <input type="number" id="spkts" placeholder="e.g., 10" min="0">
+                            <small class="field-hint">Typical: 5 - 100 packets</small>
+                        </div>
+
+                        <div class="form-group tooltip-container">
+                            <label for="Dpkts">
+                                Destination Packets
+                                <span class="info-icon" data-tooltip="Number of packets received at the destination">ⓘ</span>
+                            </label>
+                            <input type="number" id="dpkts" placeholder="e.g., 8" min="0">
+                            <small class="field-hint">Typical: 5 - 100 packets</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group tooltip-container">
+                            <label for="sbytes">
+                                Source Bytes
+                                <span class="info-icon" data-tooltip="Total bytes sent from source">ⓘ</span>
+                            </label>
+                            <input type="number" id="sbytes" placeholder="e.g., 500" min="0">
+                            <small class="field-hint">Typical: 100 - 10,000 bytes</small>
+                        </div>
+
+                        <div class="form-group tooltip-container">
+                            <label for="dbytes">
+                                Destination Bytes
+                                <span class="info-icon" data-tooltip="Total bytes received at the destination">ⓘ</span>
+                            </label>
+                            <input type="number" id="dbytes" placeholder="e.g., 2000" min="0">
+                            <small class="field-hint">Typical: 100 - 50,000 bytes</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group tooltip-container">
+                        <label for="Rate">
+                            Transmission Rate (packets/second)
+                            <span class="info-icon" data-tooltip="Average data transfer rate">ⓘ</span>
+                        </label>
+                        <input type="number" id="Rate" step="0.01" placeholder="e.g., 40.0" min="0">
+                        <small class="field-hint">Typical: 10 - 1000 packets/second</small>
+                    </div>
+                </div>
+
+                <!-- Advanced Options (Collapsible) -->
+                <div class="advancec-section">
+                    <button type="button" class="toggle-advanced">
+                        <span id="advancedToggleText">⚙️ Show Advanced Options</span>
+                    </button>
+                    <div id="advancedFields" class="hidden">
+                        <p class="info-message">
+                            💡 <strong>Note:</strong> These fields are optional. If left empty, 
+                    smart defaults based on your selected traffic type will be used.
+                        </p>
+                        <!-- Additional fields can go here if needed -->
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">🔍 Analyze Traffic</button>
+                <button type="button" class="btn-secondary" id="resetBtn">🔄 Reset Form</button>
+            </form>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>🔬 Analyzing traffic with 4 detection models...</p>
+            <p class="loading-subtext">This may take a few seconds</p>
+        </div>
+
+        <div id="results" class="results-container hidden"></div>
+
+                    
+               
+        
+        <footer>
+            <p>Powered by IsolationForest, OneClassSVM, EllipticEnvelope, LOF</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

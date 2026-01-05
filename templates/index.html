@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Multi-Domain Anomaly Detection API - Network Security, Product Quality Inspection, and Medical Image Analysis">
+    <meta name="author" content="Tanishq Rahul Shelke">
+    <title>Anomaly Detection API - Multi-Domain AI Solutions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🤖 Multi-Domain Anomaly Detection API</h1>
+            <p>AI-Powered Detection Across Network Security, Manufacturing, and Healthcare</p>
+        </header>
+        
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/network">Network</a></li>
+                <li><a href="/mvtec">MVTec</a></li>
+                <li><a href="/xray">X-ray</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h2>Welcome to the Anomaly Detection Platform</h2>
+            <p class="intro-text">
+                This comprehensive API leverages state-of-the-art machine learning and deep learning 
+                techniques to detect anomalies across three critical domains. Select a detection 
+                module below to get started.
+            </p>
+        </div>
+        
+        <!-- Feature Cards -->
+        <div class="feature-cards">
+            <!-- Network Intrusion Detection -->
+            <div class="feature-card network-card">
+                <div class="card-icon">🌐</div>
+                <h3>Network Intrusion Detection</h3>
+                <p class="card-description">
+                    Identify malicious network traffic and cyber attacks using the UNSW-NB15 dataset. 
+                    Ensemble of 4 models with 99%+ accuracy.
+                </p>
+                
+                <div class="card-details">
+                    <h4>🔍 Key Features:</h4>
+                    <ul>
+                        <li><strong>Dataset:</strong> UNSW-NB15 (2.5M network flows)</li>
+                        <li><strong>Models:</strong> Isolation Forest, OneClassSVM, Elliptic Envelope, LOF</li>
+                        <li><strong>Detection:</strong> 9 attack types (DoS, Exploits, Reconnaissance, etc.)</li>
+                        <li><strong>Input:</strong> 44 network traffic features</li>
+                    </ul>
+                    
+                    <h4>💡 Use Cases:</h4>
+                    <ul>
+                        <li>Real-time intrusion detection systems</li>
+                        <li>Network security monitoring</li>
+                        <li>Threat intelligence platforms</li>
+                        <li>SOC (Security Operations Center) tools</li>
+                    </ul>
+                </div>
+                
+                <a href="/network" class="card-btn">
+                    🚀 Launch Network Detector
+                </a>
+            </div>
+            
+            <!-- MVTec Product Quality -->
+            <div class="feature-card mvtec-card">
+                <div class="card-icon">🏭</div>
+                <h3>Product Quality Inspection</h3>
+                <p class="card-description">
+                    Detect manufacturing defects in industrial products using computer vision. 
+                    Trained on MVTec AD dataset with 15 product categories.
+                </p>
+                
+                <div class="card-details">
+                    <h4>🔍 Key Features:</h4>
+                    <ul>
+                        <li><strong>Dataset:</strong> MVTec AD (5,000+ images, 15 categories)</li>
+                        <li><strong>Models:</strong> ResNet34 + 4 anomaly detectors</li>
+                        <li><strong>Categories:</strong> Bottle, Cable, Circuit, Fabric, Metal parts, etc.</li>
+                        <li><strong>Detection:</strong> Cracks, scratches, contamination, defects</li>
+                    </ul>
+                    
+                    <h4>💡 Use Cases:</h4>
+                    <ul>
+                        <li>Automated quality control in manufacturing</li>
+                        <li>Visual inspection systems</li>
+                        <li>Defect detection pipelines</li>
+                        <li>Reduce human inspection errors</li>
+                    </ul>
+                </div>
+                
+                <a href="/mvtec" class="card-btn">
+                    🚀 Launch Quality Inspector
+                </a>
+            </div>
+            
+            <!-- Chest X-ray Analysis -->
+            <div class="feature-card xray-card">
+                <div class="feature-card xray-card">
+                <div class="card-icon">🏥</div>
+                <h3>Medical Chest X-ray Analysis</h3>
+                <p class="card-description">
+                    AI-assisted diagnostic tool for detecting thoracic abnormalities. 
+                    Trained on NIH Chest X-ray14 dataset with 112,120 images.
+                </p>
+                
+                <div class="card-details">
+                    <h4>🔍 Key Features:</h4>
+                    <ul>
+                        <li><strong>Dataset:</strong> NIH Chest X-ray14 (112K+ images)</li>
+                        <li><strong>Unsupervised:</strong> Autoencoder, IsolationForest, OCSVM, LOF</li>
+                        <li><strong>Supervised:</strong> Decision Tree, KNN for disease classification</li>
+                        <li><strong>Conditions:</strong> 14 thoracic pathologies detectable</li>
+                    </ul>
+                    
+                    <h4>⚕️ Detectable Conditions:</h4>
+                    <ul>
+                        <li>Pneumonia, Pneumothorax, Atelectasis</li>
+                        <li>Cardiomegaly, Effusion, Infiltration</li>
+                        <li>Mass, Nodule, Consolidation</li>
+                        <li>Edema, Emphysema, Fibrosis, and more</li>
+                    </ul>
+                    
+                    <div class="medical-disclaimer-small">
+                        <strong>⚠️ Disclaimer:</strong> Research tool only. Not for clinical diagnosis.
+                    </div>
+                </div>
+                
+                <a href="/xray" class="card-btn medical-btn">
+                    🚀 Launch X-ray Analyzer
+                </a>
+            </div>
+        </div>
+        
+        <!-- Technical Overview -->
+        <div class="tech-overview">
+            <h2>🔧 Technical Architecture</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>🐍 Backend</h4>
+                    <p>Flask REST API</p>
+                    <p>Python 3.8+</p>
+                    <p>Modular pipeline design</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>🧠 Machine Learning</h4>
+                    <p>Scikit-learn</p>
+                    <p>PyTorch</p>
+                    <p>Ensemble methods</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>📊 Models</h4>
+                    <p>11+ trained models</p>
+                    <p>Unsupervised & Supervised</p>
+                    <p>Majority voting ensemble</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>🎨 Frontend</h4>
+                    <p>Vanilla JavaScript</p>
+                    <p>Responsive CSS</p>
+                    <p>Drag & drop uploads</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Performance Metrics -->
+        <div class="performance-section">
+            <h2>📈 Performance Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">99.2%</div>
+                    <div class="metric-label">Network Detection Accuracy</div>
+                    <small>UNSW-NB15 Test Set</small>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">95.8%</div>
+                    <div class="metric-label">MVTec Defect Detection</div>
+                    <small>Average across 15 categories</small>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">92.3%</div>
+                    <div class="metric-label">X-ray Anomaly Detection</div>
+                    <small>NIH ChestX-ray14 Dataset</small>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">11</div>
+                    <div class="metric-label">Total ML Models</div>
+                    <small>Ensemble architecture</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How It Works -->
+        <div class="how-it-works">
+            <h2>🚀 How It Works</h2>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h4>Select Domain</h4>
+                    <p>Choose between Network, MVTec, or X-ray detection based on your use case</p>
+                </div>
+                
+                <div class="step-arrow">→</div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h4>Provide Input</h4>
+                    <p>Upload images or enter network traffic features through our user-friendly interface</p>
+                </div>
+                
+                <div class="step-arrow">→</div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h4>AI Processing</h4>
+                    <p>Multiple models analyze your data in parallel using ensemble learning techniques</p>
+                </div>
+                
+                <div class="step-arrow">→</div>
+                
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <h4>Get Results</h4>
+                    <p>Receive comprehensive predictions with confidence scores and detailed explanations</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- API Information -->
+        <div class="api-info">
+            <h2>🔌 API Endpoints</h2>
+            <div class="endpoint-list">
+                <div class="endpoint-item">
+                    <span class="endpoint-method">POST</span>
+                    <span class="endpoint-path">/api/predict/network</span>
+                    <span class="endpoint-desc">Network intrusion detection</span>
+                </div>
+                
+                <div class="endpoint-item">
+                    <span class="endpoint-method">POST</span>
+                    <span class="endpoint-path">/api/predict/mvtec</span>
+                    <span class="endpoint-desc">Product quality inspection</span>
+                </div>
+                
+                <div class="endpoint-item">
+                    <span class="endpoint-method">POST</span>
+                    <span class="endpoint-path">/api/predict/xray</span>
+                    <span class="endpoint-desc">Chest X-ray analysis</span>
+                </div>
+            </div>
+            
+            <div class="api-example">
+                <h4>Example Request (Network):</h4>
+                <pre><code>{
+  "dur": 0.5,
+  "proto": "tcp",
+  "service": "http",
+  "state": "FIN",
+  "spkts": 12,
+  "dpkts": 10,
+  "sbytes": 800,
+  "dbytes": 15000,
+  "rate": 40.0
+}</code></pre>
+            </div>
+        </div>
+        
+        <!-- About Section -->
+        <div class="about-section">
+            <h2>👨‍💻 About This Project</h2>
+            <p>
+                This multi-domain anomaly detection system was developed as part of advanced machine learning 
+                research, demonstrating the versatility of AI across cybersecurity, manufacturing, and healthcare. 
+                Each module uses domain-specific datasets and employs ensemble learning for robust predictions.
+            </p>
+            
+            <div class="author-info">
+                <h4>Developed by: Tanishq Rahul Shelke</h4>
+                <p>Masters in Engineering (MEng) - Machine Learning & Anomaly Detection</p>
+                <p>
+                    <strong>Technologies:</strong> Python, Flask, PyTorch, Scikit-learn, ResNet34, 
+                    Autoencoders, Ensemble Methods
+                </p>
+            </div>
+        </div>
+        
+        <!-- Quick Start -->
+        <div class="quick-start">
+            <h2>⚡ Quick Start Guide</h2>
+            <div class="quick-start-cards">
+                <div class="qs-card">
+                    <h4>🌐 For Network Security</h4>
+                    <ol>
+                        <li>Go to Network Detection page</li>
+                        <li>Select a traffic preset (or enter manually)</li>
+                        <li>Click "Analyze Traffic"</li>
+                        <li>View ensemble predictions</li>
+                    </ol>
+                    <a href="/network" class="btn-secondary">Try Network Detection →</a>
+                </div>
+                
+                <div class="qs-card">
+                    <h4>🏭 For Quality Control</h4>
+                    <ol>
+                        <li>Go to MVTec Inspection page</li>
+                        <li>Upload product image (drag & drop)</li>
+                        <li>Click "Inspect for Defects"</li>
+                        <li>Review quality report</li>
+                    </ol>
+                    <a href="/mvtec" class="btn-secondary">Try Quality Inspection →</a>
+                </div>
+                
+                <div class="qs-card">
+                    <h4>🏥 For Medical Analysis</h4>
+                    <ol>
+                        <li>Go to X-ray Analysis page</li>
+                        <li>Upload chest X-ray image</li>
+                        <li>Select analysis type</li>
+                        <li>Read diagnostic report</li>
+                    </ol>
+                    <a href="/xray" class="btn-secondary">Try X-ray Analysis →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <p><strong>Anomaly Detection API</strong> - Multi-Domain AI Solutions</p>
+            <p>Powered by Flask, PyTorch, Scikit-learn | Built with ❤️ for Research & Innovation</p>
+            <p>&copy; 2025 Tanishq Rahul Shelke - All Rights Reserved</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

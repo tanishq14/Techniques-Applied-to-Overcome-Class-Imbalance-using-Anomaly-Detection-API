@@ -1,0 +1,14 @@
+anomaly_detection_app/
+├── app.py                          # Main Flask app (simplified!)
+├── models/                         # Saved models
+│   ├── network/
+│   ├── mvtec/
+│   └── nihxray/
+├── modules/                        # 🆕 Your notebook code as modules
+│   ├── __init__.py                # Makes it a Python package
+│   ├── unsw_nb15.py               # All UNSW-NB15 logic
+│   ├── mvtec_ad.py                # All MVTec AD logic
+│   └── nih_xray.py                # All NIH X-ray logic
+├── templates/
+├── static/
+└── requirements.txt
