@@ -139,16 +139,32 @@ function initNetworkForm() {
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
+        // Helper to safely get numeric value or return 0
+        const getValue = (id, isFloat = false) => {
+            const el = document.getElementById(id);
+            if (!el) return 0;
+            return isFloat ? parseFloat(el.value) || 0 : parseInt(el.value) || 0;
+        };   
+
+        // Safe string getter (returns default if missing)
+        const getString = (id, defaultVal) => {
+            const el = document.getElementById(id);
+            if (!el) return defaultVal;
+            return el.value || defaultVal;
+        };
+
         const formData = {
-            dur: parseFloat(document.getElementById('dur').value) || 0,
-            proto: document.getElementById('proto').value,
-            service: document.getElementById('service').value,
-            state: document.getElementById('state').value,
-            spkts: parseInt(document.getElementById('spkts').value) || 0,
-            dpkts: parseInt(document.getElementById('dpkts').value) || 0,
-            sbytes: parseInt(document.getElementById('sbytes').value) || 0,
-            dbytes: parseInt(document.getElementById('dbytes').value) || 0,
-            rate: parseFloat(document.getElementById('rate').value) || 0
+            dur: getValue('dur', true),
+
+            // Safe string retrieval
+            proto: getString('proto', 'tcp'),
+            service: getString('service', '-'),
+            state: getString('state', 'FIN'),
+            spkts: getValue('spkts'),
+            dpkts: getValue('dpkts'),
+            sbytes: getValue('sbytes'),
+            dbytes: getValue('dbytes'),
+            rate: getValue('rate', true)
         };
 
         // Add preset indicator if selected
@@ -176,6 +192,7 @@ function loadPresetValues(presetName) {
         }
     });
 }
+
 function getPresetDisplayName(presetName) {
     const names = {
         "normal_web_browsing": "Normal Web Browsing",

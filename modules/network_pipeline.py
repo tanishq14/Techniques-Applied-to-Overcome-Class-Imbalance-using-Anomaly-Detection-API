@@ -24,6 +24,17 @@ DATASET_CONFIG = {
                          'ct_srv_dst', 'is_sm_ips_ports','attack cat', 'label']
 }
 
+# Mapping from "Friendly/Preset Names" -> "Model Training Names"
+# This fixes the "not in index" error
+COLUMN_MAPPING = {
+    'smean': 'smeansz',
+    'dmean': 'dmeansz',
+    'response_body_len': 'res_bdy_len',
+    'sinpkt': 'sintpkt',
+    'dinpkt': 'dintpkt',
+    'ct_src_ltm': 'ct_src_ ltm'
+}
+
 # Smart presets for common traffic patterns
 TRAFFIC_PRESETS = {
     "normal_web_browsing": {
@@ -96,21 +107,6 @@ FEATURE_DESCRIPTIONS = {
     "rate": "Packets per second transmission rate"
 }
 
-def apply_preset(user_input, preset_name="normal_web_browsing"):
-    """
-    Apply preset values and merge with user input
-    User input takes priority over preset values
-    """
-    if preset_name not in TRAFFIC_PRESETS:
-        preset_name = "normal_web_browsing"
-    
-    # Start with preset
-    data = TRAFFIC_PRESETS[preset_name].copy()
-    
-    # Override with user input
-    data.update(user_input)
-    
-    return data
 
 # Model paths
 MODEL_PATHS = {
@@ -161,11 +157,21 @@ class NetworkAnomalyDetector:
         for feat in DATASET_CONFIG['expected_features']:
             if feat not in df.columns:
                 df[feat] = 0  # Default value for missing features
+
+        # CRITICAL FIX: Rename columns to match what the model expects
+        # The model was trained on UNSW-NB15 csv headers (smeansz, dmeansz, etc.)
+        df.rename(columns=COLUMN_MAPPING, inplace=True)
         
         # Transform using saved transformer
         if self.transformer is None:
             raise RuntimeError("Column transformer not loaded. Check that models/network/column_transformer.pkl exists.")
-        X = self.transformer.transform(df)
+        
+        try:
+            X = self.transformer.transform(df)
+        except Exception as e:
+            # Better error message for debugging column mismatches
+            raise ValueError(f"Transformer failed. Model expects columns: {e}")
+
         return X
 
 
@@ -275,6 +281,22 @@ class NetworkAnomalyDetector:
         # Sigmoid-based confidence
         confidence = 1 / (1 + np.exp(-abs(score)))
         return round(confidence * 100, 2)
+    
+def apply_preset(user_input, preset_name="normal_web_browsing"):
+    """
+    Apply preset values and merge with user input
+    User input takes priority over preset values
+    """
+    if preset_name not in TRAFFIC_PRESETS:
+        preset_name = "normal_web_browsing"
+    
+    # Start with preset
+    data = TRAFFIC_PRESETS[preset_name].copy()
+    
+    # Override with user input
+    data.update(user_input)
+    
+    return data
 
 # Singleton instance
 _detector = None
