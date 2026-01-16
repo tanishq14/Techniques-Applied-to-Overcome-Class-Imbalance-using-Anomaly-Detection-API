@@ -7,4 +7,5 @@ __pycache__/
 *$py.class
 
 api.log
-.vscode/
+
+.vscode/ settings.json
