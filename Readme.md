@@ -18,6 +18,7 @@
 - [Case Study : Isolation Forest](#case-study--isolation-forest)
 - [Features](#features)
 - [System Requirements](#system-requirements)
+- [Dataset setup & Model Artifact Generation](#dataset-setup--model-artifact-generation)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [API Documentation](#api-documentation)
@@ -103,6 +104,47 @@ scipy>=1.7.0
 
 ---
 
+## 📁 Dataset Setup & Model Artifact Generation
+
+To generate the required trained models and serialized artifacts (.pkl files) used by the anomaly detection API, all Python notebooks in this repository must be executed end-to-end after setting up the datasets in the correct directory structure.
+
+1. Download Datasets
+
+Download the following datasets from their official sources:
+
+- UNSW-NB15 – Network intrusion detection dataset
+
+- MVTec AD – Industrial defect detection dataset
+
+- NIH ChestXray14 – Medical imaging anomaly detection dataset
+
+⚠️ Due to licensing restrictions, datasets are not included in this repository.
+
+2. Execute All Notebooks
+
+Each notebook must be run from top to bottom to:
+
+- Preprocess datasets
+
+- Train anomaly detection models
+
+- Calibrate decision thresholds and anomaly scores
+
+- Serialize trained models and preprocessing pipelines
+
+This process generates .pkl files (e.g., trained models, PCA objects, scalers, encoders), which are saved locally and later loaded by the API for inference.
+
+Examples of generated artifacts include:
+
+- **Isolation Forest models**
+
+- **One-Class SVM models**
+
+- **PCA transformers**
+
+- **Feature scalers and encoders**
+
+---
 ## 🚀 Installation
 
 ### 1. Clone the Repository
