@@ -45,7 +45,7 @@ To avoid CORS (Cross-Origin Resource Sharing) issues during development, this Re
 
 Any request made to /api/* from the frontend is automatically forwarded to the Flask backend running on http://127.0.0.1:5000. This is configured in vite.config.js.
 
-##📁 Project Structure
+## 📁 Project Structure
 
 ```text
 anomaly-detection-api/

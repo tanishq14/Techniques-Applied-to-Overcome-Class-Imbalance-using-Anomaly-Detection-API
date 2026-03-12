@@ -188,11 +188,11 @@ export default function NetworkPage() {
                   <div key={name} className="model-card">
                     <div className="model-header">
                     <span className="model-name" style={{textTransform: 'captalize'}}>{name.replace('_', ' ')}</span>
-                    <span className="model- badge" style={{background: color}}>{data.prediction}</span>
+                    <span className="model-badge" style={{background: color}}>{data.prediction}</span>
                     </div>
-                    <div className="model-confidence">
-                      <small>Condidence: {data.confidence}%</small>
-                      <div className="mini-confidence-bar"><div style={{width: `${data.confidence}%`, backgroung: color}}></div></div>
+                    <div className="model-confidence mt-2">
+                      <small>Confidence: {data.confidence}%</small>
+                      <div className="mini-confidence-bar"><div style={{width: `${data.confidence}%`, background: color}}></div></div>
                     </div>
                   </div>
                 );

@@ -1,0 +1,26 @@
+services:
+  # 1. The Python Backend
+  backend:
+    build: .
+    container_name: anomaly_backend
+    ports:
+      - "5000:5000"
+    volumes:
+      # Maps your local models and uploads folders so they persist
+      - ./models:/app/models
+      - ./static/uploads:/app/static/uploads
+    environment:
+      - FLASK_ENV=development
+
+  # 2. The React Frontend
+  frontend:
+    build: ./frontend
+    container_name: anomaly_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      # Maps your local frontend code so changes update instantly (Hot Reload)
+      - ./frontend:/app
+      - /app/node_modules # Prevents local node_modules from overriding container's
+    depends_on:
+      - backend

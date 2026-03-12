@@ -5,10 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: true,
+    port: 5173,
+    strictPort: true,
     proxy: {
       // Any request starting with /api will be sent to Flask
       '/api': {
-        target: 'http://127.0.0.1:5000',
+        target: 'http://backend:5000',
         changeOrigin: true,
         secure: false,
       }

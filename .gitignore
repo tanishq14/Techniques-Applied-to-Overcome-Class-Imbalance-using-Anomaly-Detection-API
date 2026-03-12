@@ -1,4 +1,5 @@
 models/
+download_models.py
 
 # Python bytecode, caches and compiled files
 __pycache__/
