@@ -29,7 +29,7 @@ function App() {
         </Routes>
 
         <footer>
-            <p><strong>Anomaly Detection API</strong> - React Frontend</p>
+            <p><strong>Anomaly Detection API</strong></p>
             <p>&copy; 2026 Tanishq Rahul Shelke</p>
         </footer>
       </div>
