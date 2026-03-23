@@ -72,6 +72,26 @@ export default function NetworkPage() {
     <div className="form-container">
       <h2>🌐 Network Intrusion Detection</h2>
       <p>UNSW-NB15 Dataset Analysis</p>
+
+      {/* Info Section with all tags */}
+      <div className="info-panel mb-4">
+          <h3>📊 What is Network Intrusion Detection?</h3>
+          <p>Provide network flow features and our AI ensemble will detect if the traffic represents normal behavior or a potential cyber attack.</p>
+          <div className="supported-categories mt-3">
+              <h4 style={{color: 'white', marginBottom: '10px'}}>🎯 Detectable Attack Categories:</h4>
+              <div className="category-tags">
+                  <span className="tag">💥 DoS (Denial of Service)</span>
+                  <span className="tag">🔓 Exploits</span>
+                  <span className="tag">🕵️ Reconnaissance</span>
+                  <span className="tag">🐛 Fuzzers</span>
+                  <span className="tag">📊 Analysis</span>
+                  <span className="tag">🚪 Backdoor</span>
+                  <span className="tag">💻 Shellcode</span>
+                  <span className="tag">🐛 Worms</span>
+                  <span className="tag">❓ Generic</span>
+              </div>
+          </div>
+      </div>
       
       {/* Buttons to load presets */}
       <div className="preset-selector" style={{marginBottom: '20px'}}>
@@ -96,9 +116,9 @@ export default function NetworkPage() {
             <div className="form-group tooltip-container">
               <label>Protocol<span className="info-icon" title="Network communication protocol">ⓘ</span></label>
               <select name="proto" value={formData.proto} onChange={handleChange}>
-                <option value="tcp">TCP</option>
-                <option value="udp">UDP</option>
-                <option value="arp">ARP</option>
+                <option value="tcp">TCP (Web, File Transfer)</option>
+                <option value="udp">UDP (DNS, Streaming)</option>
+                <option value="arp">ARP (Network Discovery)</option>
                 <option value="other">Other</option>
             </select>
           </div>

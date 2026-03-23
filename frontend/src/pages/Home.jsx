@@ -24,8 +24,10 @@ export default function Home() {
           <div className="card-details">
             <h4> Key Features:</h4>
             <ul>
+              <li><strong>Dataset:</strong> UNSW-NB15 (2.5M Packets)</li>
               <li><strong>Models:</strong> Isolation Forest, OneClassSVM, Elliptic Envelope, LOF</li>
-              <li><strong>Detection:</strong> 9 Attack Factors</li>
+              <li><strong>Detection:</strong> 9 Attack types (DoS, Exploits, Reconnaissance, etc.)</li>
+              <li><strong>Input:</strong> 44 network traffic features</li>
             </ul>
           </div>
           <Link to="/network" className="card-btn">🚀 Network Anomaly Detection</Link>
@@ -42,8 +44,10 @@ export default function Home() {
             <div className="card-details">
               <h4> Key Features:</h4>
               <ul>
-                <li><strong>Models:</strong> Resnet 34 + 4 anomaly detectors</li>
-                <li><strong>Categories:</strong> Diverse 15 products</li>
+                <li><strong>Dataset:</strong> MVTec AD (5,000+ images, 15 categories)</li>
+                <li><strong>Models:</strong> ResNet34 + 4 anomaly detectors</li>
+                <li><strong>Categories:</strong> Bottle, Cable, Circuit, Fabric, Metal parts, etc.</li>
+                <li><strong>Detection:</strong> Cracks, scratches, contamination, defects</li>
               </ul>
             </div>
             <Link to="/mvtec" className="card-btn">🚀 Quality Inspection Detection</Link>
@@ -60,6 +64,8 @@ export default function Home() {
             <div className="card-details">
             <h4>🔍 Key Features:</h4>
             <ul>
+              <li><strong>Dataset:</strong> NIH Chest X-ray14 (112K+ images)</li>
+              <li><strong>Conditions:</strong> 14 thoracic pathologies detectable</li>
               <li><strong>Unsupervised:</strong> Autoencoder, IsolationForest, OCSVM, LOF</li>
               <li><strong>Supervised:</strong> Decision Tree, KNN</li>
             </ul>
@@ -74,8 +80,14 @@ export default function Home() {
       <div className="tech-overview mt-4">
         <h2>🔧 Technical Architecture</h2>
         <div className="tech-grid">
-          <div className="tech-item"><h4>🐍 Backend</h4><p>Flask REST API</p></div>
-          <div className="tech-item"><h4>🧠 ML</h4><p>PyTorch & Scikit-learn</p></div>
+          <div className="tech-item">
+            <h4>🐍 Backend</h4>
+            <p>Flask REST API</p>
+            <p>Python 3.8+</p>
+            <p>Modular pipeline design</p>
+            <p>Docker</p>
+          </div>
+          <div className="tech-item"><h4>🧠 ML</h4><p>PyTorch, Scikit-learn & Ensemble Methods</p></div>
           <div className="tech-item"><h4>📊 Models</h4><p>11+ trained models</p></div>
           <div className="tech-item"><h4>🎨 Frontend</h4><p>React & Vite</p></div>
         </div>
