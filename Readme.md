@@ -21,8 +21,6 @@ This project addresses the "Imbalanced Data" problem in Machine Learning. In rea
 
 ## 📊 Domains & Results showcase
 
-> **Recruiter Note:** The following modules demonstrate the system's ability to adapt to entirely different data modalities (Tabular, RGB Vision, Grayscale Medical Vision).
-
 ### 1. 🌐 Cybersecurity: Network Intrusion Detection 
 * **Dataset:** [UNSW-NB15](https://www.kaggle.com/datasets/mrwellsdavid/unsw-nb15) (2.5 million network flows, 44 dimensions)
 * **Strategy:** Analyzes raw network packet features to identify 9 distinct categories of malicious traffic.
@@ -188,7 +186,7 @@ The project is built with a modern, decoupled architecture, containerized via Do
 
 ---
 
-### Models by Domain
+### 🧠 Deep Learning Models as per Domain
 
 **Network** (4 models):
 - Isolation Forest
@@ -235,7 +233,9 @@ for model, data in result['supervised_models'].items():
 print(f"{model}: {data['prediction']} ({data['confidence']:.1f}%)")
 ```
 
-### Web Interface
+---
+
+## 🕸️ Web Interface
 
 1. Navigate to https://anomaly-detection-api.vercel.app/
 2. Select a detection module
