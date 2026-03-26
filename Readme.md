@@ -1,4 +1,4 @@
-# 🤖 Techniques to Overcome Class Imbalance using Anomaly Detection  
+# 🤖 Techniques Applied to Overcome Class Imbalance using Anomaly Detection API  
 
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![React](https://img.shields.io/badge/react-18.0+-blue.svg)
